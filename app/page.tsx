@@ -1,31 +1,23 @@
 "use client";
 
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ChevronRight, Mail, Terminal, Linkedin, User, ArrowUpRight } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
-// Section Transition Logic
-const pageTransition = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-};
+const fontImport = `
+  @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Cedarville+Cursive&family=Inter:wght@300;400;900&family=JetBrains+Mono:wght@300&display=swap');
+`;
 
-interface SectionProps {
-  children: ReactNode;
-}
+const words = ["Actuary", "Trader", "Data Analyst", "Writer", "Graphic Designer", "Creative Director"];
 
-function Section({ children }: SectionProps) {
+function Section({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.section
-      variants={pageTransition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="min-h-[80vh] flex flex-col justify-center px-6 md:px-12 py-24"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+      className={`min-h-[100vh] flex flex-col justify-end px-8 md:px-16 pb-24 pt-40 ${className}`}
     >
       {children}
     </motion.section>
@@ -34,130 +26,196 @@ function Section({ children }: SectionProps) {
 
 export default function Portfolio() {
   const [page, setPage] = useState("home");
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    // Updated Background Color to #18392B
-    <div className="relative min-h-screen bg-[#18392B] text-neutral-100 selection:bg-white selection:text-[#18392B]">
-      
-      {/* BACKGROUND DECORATION - Subtler grid for the dark green theme */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-white/5 blur-[120px] rounded-full" />
-      </div>
+    <div className="relative min-h-screen bg-[#0a1a12] text-neutral-100 selection:bg-white selection:text-[#0a1a12] overflow-x-hidden font-sans">
+      <style dangerouslySetInnerHTML={{ __html: fontImport }} />
+      <div className="fixed inset-0 z-0 bg-[#0a1a12]" />
 
-      {/* NAVIGATION */}
-      <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/10 backdrop-blur-md bg-[#18392B]/50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-5">
+      <nav className="fixed top-0 left-0 w-full z-[100] border-b border-white/5 backdrop-blur-xl bg-[#0a1a12]/80 font-mono">
+        <div className="max-w-full flex justify-between items-center px-10 py-8">
           <motion.span 
-            className="font-bold text-sm tracking-widest uppercase cursor-pointer"
+            className="text-[10px] tracking-[0.4em] uppercase cursor-pointer"
             onClick={() => setPage("home")}
           >
             MUHAMMAD SHAHBAZ MURTAZA
           </motion.span>
           
-          <div className="flex items-center gap-8">
-            <div className="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-medium">
-              <button onClick={() => setPage("about")} className={`transition-colors ${page === "about" ? "text-white" : "text-neutral-400 hover:text-white"}`}>About</button>
-              <button onClick={() => setPage("technical")} className={`transition-colors ${page === "technical" ? "text-white" : "text-neutral-400 hover:text-white"}`}>Technical</button>
-              <button onClick={() => setPage("projects")} className={`transition-colors ${page === "projects" ? "text-white" : "text-neutral-400 hover:text-white"}`}>Projects</button>
-            </div>
-            
-            {/* LinkedIn Redirect */}
-            <a 
-              href="https://www.linkedin.com/in/muhammad-shahbaz-murtaza-64493022b/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
-            >
-              <Linkedin size={18} />
-            </a>
+          <div className="flex items-center gap-12 text-[10px] uppercase tracking-[0.3em]">
+            <button onClick={() => setPage("about")} className={page === "about" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>About</button>
+            <button onClick={() => setPage("technical")} className={page === "technical" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>Experience</button>
+            <button onClick={() => setPage("projects")} className={page === "projects" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>Projects</button>
+            <a href="https://www.linkedin.com/in/muhammad-shahbaz-murtaza-64493022b/" target="_blank" className="text-neutral-500 hover:text-white"><Linkedin size={16} /></a>
           </div>
         </div>
       </nav>
 
-      <main className="relative z-10 max-w-7xl mx-auto">
+      <main className="relative z-10">
         <AnimatePresence mode="wait">
           
-          {/* HOME / LANDING */}
           {page === "home" && (
-            <Section key="home">
-              <div className="max-w-4xl">
-                <motion.p 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
-                  className="font-mono text-xs uppercase tracking-[0.3em] text-neutral-400 mb-8"
-                >
-                  Based in Karachi &bull; 2026
-                </motion.p>
+            <Section key="home" className="items-start">
+              <div className="max-w-6xl w-full">
                 <motion.h1 
-                  className="text-7xl md:text-9xl font-bold tracking-tight mb-8 leading-[0.9]"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  className="text-5xl md:text-8xl font-black tracking-tight leading-[0.85] text-white uppercase"
+                  style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
                 >
-                  Systems <br />
-                  <span className="italic font-serif font-light text-neutral-300">& Aesthetics.</span>
+                  Welcome to <br /> My <span className="lowercase font-light tracking-normal normal-case text-neutral-300" style={{ fontFamily: "'Cedarville Cursive', cursive" }}>portfolio.</span>
                 </motion.h1>
-                <div className="flex flex-col md:flex-row md:items-center gap-8 mt-12">
-                  <p className="text-lg text-neutral-300 max-w-md leading-relaxed">
-                    I design analytical frameworks with a creative soul. Specializing in Bayesian systems and editorial-style design.
-                  </p>
-                  <Button 
-                    size="lg" 
-                    className="w-fit rounded-none bg-white text-[#18392B] hover:bg-neutral-200 px-10 border-none"
-                    onClick={() => setPage("about")}
-                  >
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-            </Section>
-          )}
 
-          {/* ABOUT SECTION */}
-          {page === "about" && (
-            <Section key="about">
-              <div className="grid md:grid-cols-2 gap-16 items-start">
-                <div>
-                  <h2 className="text-5xl font-bold mb-8">About Me</h2>
-                  <div className="space-y-6 text-neutral-300 text-lg leading-relaxed">
-                    <p>
-                      [INSERT DESCRIPTION HERE: You can tell me about your background, your actuarial interests, and your design passion.]
-                    </p>
-                    <p>
-                      I believe the most powerful systems are the ones that are as beautiful as they are functional.
-                    </p>
+                <div className="flex items-center flex-wrap gap-4 font-mono text-[11px] md:text-sm uppercase tracking-[0.4em] text-white/70 mt-10 mb-20">
+                  <span>Statistics Graduate</span> 
+                  <span className="text-xl text-white/40">◎</span> 
+                  <div className="flex items-center gap-3">
+                    <span>Aspiring</span>
+                    <div className="relative h-6 inline-flex items-center min-w-[280px]">
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={words[index]}
+                          initial={{ y: 15, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          exit={{ y: -15, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "circOut" }}
+                          className="absolute left-0 text-white font-bold text-xs md:text-base tracking-[0.2em] whitespace-nowrap"
+                        >
+                          {words[index]}
+                        </motion.span>
+                      </AnimatePresence>
+                    </div>
                   </div>
                 </div>
-                <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
-                  <h3 className="text-sm font-mono uppercase tracking-widest mb-6 text-blue-400">Interests</h3>
-                  <ul className="space-y-4">
-                    {["Actuarial Science", "Bayesian Statistics", "Graphic Design", "Poetry", "System Architecture"].map((interest) => (
-                      <li key={interest} className="flex items-center gap-3 border-b border-white/5 pb-2">
-                        <ArrowUpRight size={14} className="text-neutral-500" />
-                        <span>{interest}</span>
-                      </li>
-                    ))}
-                  </ul>
+
+                <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-12 w-full">
+                   <p className="text-base text-neutral-400 font-light tracking-wide max-w-sm leading-relaxed">
+                    Bridging <span className="text-white">quantitative rigor</span> and <span className="text-white">creativity</span>.
+                  </p>
+
+                  <div className="flex flex-wrap gap-6 items-center">
+                    <motion.button 
+                      whileHover={{ backgroundColor: "#ffffff", color: "#0a1a12" }}
+                      onClick={() => setPage("about")}
+                      className="px-12 py-4 border border-white/20 text-white rounded-full font-mono text-[10px] uppercase tracking-widest transition-all duration-300"
+                    >
+                      My Story
+                    </motion.button>
+                    <a href="/resume.pdf" download="Shahbaz_Murtaza_Resume.pdf">
+                      <motion.button 
+                        whileHover={{ backgroundColor: "#ffffff", color: "#0a1a12" }}
+                        className="px-12 py-4 border border-white/20 text-white rounded-full font-mono text-[10px] uppercase tracking-widest transition-all duration-300"
+                      >
+                        Download Resume
+                      </motion.button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </Section>
           )}
 
-          {/* ... Other sections (Technical, Projects) remain same ... */}
+          {page === "about" && (
+            <Section key="about" className="justify-start pb-20">
+              <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
+                
+                <div className="lg:col-span-7 space-y-10">
+                  <div>
+                    <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 mb-6">Introduction</h2>
+                    <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-300">
+                      Hiya! I’m <span className="text-white font-medium">Shahbaz</span>, 23, a <span className="text-white">Statistics</span> graduate from the University of British Columbia. 
+                    </p>
+                  </div>
 
+                  <p className="text-neutral-400 leading-relaxed text-lg font-light">
+                    I’m currently deepening my understanding of financial markets while evaluating my role as a ticker in the system. With a strong intuition and groundwork in <span className="text-white">statistical theory</span>, quantitative analysis and storytelling, I excel at extracting actionable insights from complex data.
+                  </p>
+
+                  <p className="text-neutral-400 leading-relaxed text-lg font-light border-l border-white/10 pl-6">
+                    Simultaneously, I’m chasing my <span className="text-white font-medium">ASA designation</span> (studying for EXAM FM) and sharpening my actuarial acumen. In short, gradually building the box which fits my ambition. Beyond technical pursuits, I’m an avid poet, weaving philosophy into every gap I find.
+                  </p>
+
+                  <div className="pt-6 grid grid-cols-2 gap-8 font-mono text-[10px] uppercase tracking-widest text-white/50">
+                    <div>
+                      <p className="text-white/20 mb-2">Honors</p>
+                      <p className="text-white text-[9px]">High Distinction</p>
+                    </div>
+                    <div>
+                      <p className="text-white/20 mb-2">Scholarship</p>
+                      <p className="text-white text-[9px]">International Major Entrance Scholar</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 space-y-12">
+                  <div className="space-y-8 pl-4">
+                    <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30">Technical Core</h2>
+                    <div className="grid grid-cols-2 gap-8 font-mono text-[11px] uppercase tracking-widest">
+                      <div className="space-y-3">
+                        <p className="text-white/20 text-[9px] mb-4">Quantitative</p>
+                        <p>R</p>
+                        <p>SQL</p>
+                        <p>Python</p>
+                        <p>Power BI</p>
+                        <p>JavaScript</p>
+                      </div>
+                      <div className="space-y-3">
+                        <p className="text-white/20 text-[9px] mb-4">Design</p>
+                        <p>Figma</p>
+                        <p>Canva</p>
+                        <p>Davinci Resolve</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/[0.02] border border-white/5 p-8 rounded-2xl">
+                    <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 mb-8">Other Interests</h2>
+                    <div className="flex flex-wrap gap-3 font-mono text-[9px] uppercase tracking-widest">
+                      {["Cooking", "Film", "Artistic Creation", "Fashion", "Scrabble (2020 Intl. Prospect)", "Chess", "Poetry", "Poker"].map((item) => (
+                        <span key={item} className="px-4 py-2 border border-white/10 rounded-full text-white/70 hover:border-white/40 transition-colors">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </Section>
+          )}
+
+          {page === "technical" && (
+            <Section key="technical">
+              <h2 className="text-4xl font-bold mb-16 uppercase tracking-tighter">Experience</h2>
+              <div className="grid gap-12 max-w-4xl font-light text-sm">
+                <div className="border-l border-white/10 pl-8">
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">June 2025 – Aug 2025</span>
+                    <h3 className="text-2xl font-bold mt-1 uppercase">Risk Management Intern</h3>
+                    <p className="text-white/60 mb-4 font-mono">Soneri Bank</p>
+                    <p className="text-neutral-400 leading-relaxed max-w-2xl">
+                        Validated and cleaned insurance credit risk model inputs (PD, LGD) in Excel, improving data accuracy by 15%.
+                        Proposed automation of modeling workflows using SQL-based data warehousing and Python pipelines.
+                    </p>
+                </div>
+                <div className="border-l border-white/10 pl-8">
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2024 – May 2025</span>
+                    <h3 className="text-2xl font-bold mt-1 uppercase">Vice President, External</h3>
+                    <p className="text-white/60 mb-4 font-mono">UBC Actuarial Science Club</p>
+                    <p className="text-neutral-400 leading-relaxed max-w-2xl">
+                        Curated interactive social media campaigns resulting in 40K+ views.
+                        Secured industry partnerships and supervised recruitment from a pool of 43 applicants.
+                    </p>
+                </div>
+              </div>
+            </Section>
+          )}
         </AnimatePresence>
       </main>
-
-      {/* FOOTER */}
-      <footer className="border-t border-white/5 py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-neutral-500 text-[10px] uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} MUHAMMAD SHAHBAZ MURTAZA</p>
-          <div className="flex gap-8">
-            <a href="https://www.linkedin.com/in/muhammad-shahbaz-murtaza-64493022b/" target="_blank" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="mailto:your-email@example.com" className="hover:text-white transition-colors">Email</a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
