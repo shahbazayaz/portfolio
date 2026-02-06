@@ -2,7 +2,7 @@
 
 import React, { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Linkedin } from "lucide-react";
+import { Linkedin, ExternalLink } from "lucide-react";
 
 const fontImport = `
   @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Cedarville+Cursive&family=Inter:wght@300;400;900&family=JetBrains+Mono:wght@300&display=swap');
@@ -195,7 +195,6 @@ export default function Portfolio() {
                 <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 mb-16">Professional Path</h2>
                 
                 <div className="space-y-24">
-                  {/* 1. Soneri Bank - Risk Management */}
                   <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
                     <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">June 2025 – Aug 2025</span>
@@ -212,7 +211,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* 2. UBC Actuarial Club - VP External */}
                   <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
                     <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2024 – May 2025</span>
@@ -228,7 +226,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* 3. Get Thrifty - Graphic Designer */}
                   <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
                     <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2025 – Present</span>
@@ -245,7 +242,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* 4. Tim Hortons - Sales Attendant */}
                   <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
                     <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2022 – Dec. 2025</span>
@@ -262,7 +258,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* 5. Sharkkfit - Head of Marketing */}
                   <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
                     <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">June 2021 – Dec 2021</span>
@@ -301,7 +296,7 @@ export default function Portfolio() {
                         </div>
                         <span className="text-[10px] font-mono text-white/30">2024</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3">Portfolio Risk Analysis Model</h3>
+                      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-tight">Portfolio Risk Analysis Model</h3>
                       <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
                         Developed a simulation-based model to calculate Value at Risk (VaR) and Expected Shortfall for a diversified asset portfolio using Monte Carlo methods.
                       </p>
@@ -319,7 +314,7 @@ export default function Portfolio() {
                         </div>
                         <span className="text-[10px] font-mono text-white/30">2023</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3">Health Claims Dashboard</h3>
+                      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-tight">Health Claims Dashboard</h3>
                       <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
                         Processed large-scale insurance datasets to visualize claim frequency and severity trends, identifying key cost drivers for actuarial review.
                       </p>
@@ -332,33 +327,103 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* --- CREATIVE PROJECTS --- */}
+{/* --- CREATIVE PROJECTS --- */}
                 <div className="space-y-12">
                   <div className="flex items-baseline gap-4">
                     <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Creative</h2>
-                    <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Design / Narrative</span>
+                    <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Design Portfolio</span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="md:col-span-2 relative h-[300px] rounded-3xl overflow-hidden group border border-white/5">
-                      <div className="absolute inset-0 bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center text-white/10 text-6xl font-black italic">VISUALS</div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a12] via-transparent to-transparent opacity-80" />
-                      <div className="absolute bottom-8 left-8">
-                        <h3 className="text-xl font-bold text-white mb-1">Get Thrifty Social Campaign</h3>
-                        <p className="text-neutral-400 text-xs font-light tracking-widest uppercase">Digital Art Direction</p>
-                      </div>
-                    </div>
-
-                    <div className="relative h-[300px] rounded-3xl overflow-hidden group border border-white/5 bg-white/[0.02] p-8 flex flex-col justify-end">
-                      <div className="mb-auto">
-                        <span className="text-4xl opacity-20">"</span>
-                        <p className="text-neutral-300 italic font-light text-sm">
-                          Philosophy in the gaps—weaving poetry through statistical structures.
+                    {/* Editorial Newsletters - UPDATED WITH CATS IMAGE */}
+                    <a 
+                      href="https://drive.google.com/drive/u/1/folders/1O6-1vCAKlX5ZFKfJAU_PpxTS31YaC_fU" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group relative h-[450px] rounded-3xl overflow-hidden border border-white/5 bg-[#0a1a12] flex flex-col justify-end transition-all"
+                    >
+                      <img 
+                        src="/newsletter-cats.png" // Ensure this matches your filename
+                        alt="Editorial Design"
+                        className="absolute inset-0 w-full h-full object-cover object-top opacity-80 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700"
+                      />
+                      {/* Darker gradient at bottom for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a12] via-[#0a1a12]/20 to-transparent" />
+                      
+                      <div className="relative p-8 w-full">
+                        <div className="flex justify-between items-start mb-4">
+                          <span className="text-[9px] font-mono text-white/40 border border-white/10 px-3 py-1 rounded-full uppercase">Editorial</span>
+                          <ExternalLink size={16} className="text-white/20 group-hover:text-white transition-colors" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight">Editorial Newsletters</h3>
+                        <p className="text-neutral-300 text-xs font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          Visual direction and layout design for recurring editorial content, focusing on long-form storytelling.
                         </p>
                       </div>
-                      <h3 className="text-xl font-bold text-white mt-4">Selected Poetry</h3>
-                      <p className="text-neutral-400 text-[10px] uppercase tracking-widest mt-1">Literary Works</p>
-                    </div>
+                    </a>
+
+                    {/* Get Thrifty Socials */}
+                    <a 
+                      href="https://drive.google.com/drive/u/1/folders/18QFYff1PvfZIzznNf0yX8r1oRXOgvzqK" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group relative h-[450px] rounded-3xl overflow-hidden border border-white/5 bg-neutral-900 flex flex-col justify-end transition-all"
+                    >
+                      <img 
+                        src="/upcycling.png" 
+                        alt="Get Thrifty Visuals"
+                        className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a12] via-[#0a1a12]/40 to-transparent" />
+                      
+                      <div className="relative p-8 w-full">
+                        <div className="flex justify-between items-start mb-4">
+                          <span className="text-[9px] font-mono text-white/40 border border-white/10 px-3 py-1 rounded-full uppercase"> Graphic Design</span>
+                          <ExternalLink size={16} className="text-white/20 group-hover:text-white transition-colors" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight">Get Thrifty Socials</h3>
+                        <p className="text-neutral-300 text-xs font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          Campaign assets designed to increase engagement and visual brand identity for UBC's thrift community.
+                        </p>
+                      </div>
+                    </a>
+
+                   {/* UBC ASC - FIXED BRANDING CARD */}
+                    <a 
+                      href="https://drive.google.com/drive/u/1/folders/1aqwLoufAbgBwvsWSg_Ibt5jdYpK74Gh3" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group relative h-[450px] rounded-3xl overflow-hidden border border-white/5 bg-[#001529] flex flex-col justify-end transition-all"
+                    >
+                      {/* Image container fixed to match the "Inception" and "Upcycling" style */}
+                      <img 
+                        src="/asc-flag.png" 
+                        alt="ASC Branding"
+                        className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-40 group-hover:scale-105 transition-all duration-700"
+                      />
+                      
+                      {/* Gradient for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#001529] via-transparent to-transparent" />
+                      
+                      <div className="relative p-8 w-full">
+                        <div className="flex justify-between items-start mb-4">
+                          <span className="text-[9px] font-mono text-white/40 border border-white/10 px-3 py-1 rounded-full uppercase">Marketing</span>
+                          <ExternalLink size={16} className="text-white/20 group-hover:text-white transition-colors" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight">ASC Visual Identity</h3>
+                        <p className="text-neutral-300 text-xs font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          Professional brand assets and social outreach materials designed for the Actuarial Science Club.
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* Poetry Section */}
+                  <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <p className="text-neutral-500 italic font-light text-sm max-w-md">
+                      "Philosophy in the gaps—weaving poetry through statistical structures."
+                    </p>
+                    <span className="text-[10px] font-mono text-white/40 uppercase tracking-[0.3em]">Selected Literary Works (2020-Present)</span>
                   </div>
                 </div>
 
