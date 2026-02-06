@@ -1,65 +1,140 @@
-import Image from "next/image";
+// =====================================================
+// CREATIVE AGENCY–STYLE PORTFOLIO
+// Stack: Next.js-style React + Tailwind + Framer Motion
+// Purpose: Structure + motion + theming (YOU write the copy)
+// =====================================================
 
-export default function Home() {
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+/*
+====================
+HOW TO EDIT
+====================
+- TEXT: Replace content inside "EDIT COPY HERE"
+- COLORS: Change Tailwind colors (neutral-950, neutral-100, etc.)
+- FONTS: Add font in globals.css and swap className
+- SECTIONS: Each <Section /> can become its own page later
+*/
+
+const pageTransition = {
+  initial: { opacity: 0, y: 40 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -40 },
+};
+
+function Section({ children }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <motion.section
+      variants={pageTransition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="min-h-screen px-8 py-24"
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+export default function Portfolio() {
+  const [page, setPage] = useState("home");
+
+  return (
+    <div className="bg-neutral-950 text-neutral-100 transition-colors duration-500">
+
+      {/* NAV */}
+      <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur bg-neutral-950/60">
+        <span className="font-semibold">EDIT NAME</span>
+        <div className="flex gap-6 text-sm">
+          <button onClick={() => setPage("technical")}>Technical</button>
+          <button onClick={() => setPage("design")}>Design</button>
+          <button onClick={() => setPage("projects")}>Projects</button>
+          <button onClick={() => setPage("contact")}>Contact</button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </nav>
+
+      <AnimatePresence mode="wait">
+
+        {/* ================= HOME / LANDING ================= */}
+        {page === "home" && (
+          <Section key="home">
+            <div className="flex flex-col justify-center items-center text-center">
+              <motion.h1 className="text-7xl md:text-9xl font-bold tracking-tight">
+                EDIT NAME
+              </motion.h1>
+              <p className="mt-8 max-w-xl text-neutral-400">
+                {/* EDIT COPY HERE */}
+                I build analytical systems with a creative point of view.
+              </p>
+              <div className="mt-12 flex gap-4">
+                <Button onClick={() => setPage("projects")}>View Work</Button>
+                <Button variant="outline" onClick={() => setPage("contact")}>Contact</Button>
+              </div>
+            </div>
+          </Section>
+        )}
+
+        {/* ================= TECHNICAL ================= */}
+        {page === "technical" && (
+          <Section key="technical">
+            <h2 className="text-5xl font-semibold mb-12">Technical Experience</h2>
+            <div className="grid gap-8 max-w-5xl">
+              <Card><CardContent className="p-6">Risk & Actuarial — Bank internship · Exam P · ASC</CardContent></Card>
+              <Card><CardContent className="p-6">Statistics & ML — Bayesian, LASSO, ANOVA, classification</CardContent></Card>
+              <Card><CardContent className="p-6">Systems — Java, SQL, data pipelines</CardContent></Card>
+            </div>
+          </Section>
+        )}
+
+        {/* ================= DESIGN ================= */}
+        {page === "design" && (
+          <Section key="design">
+            <h2 className="text-5xl font-semibold mb-12">Design Experience</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card><CardContent className="p-6">Graphic Design — Get Thrifty</CardContent></Card>
+              <Card><CardContent className="p-6">Marketing & Social — ASC · Sharkkfit</CardContent></Card>
+              <Card><CardContent className="p-6">Writing — Poetry · Editorial thinking</CardContent></Card>
+            </div>
+          </Section>
+        )}
+
+        {/* ================= PROJECTS ================= */}
+        {page === "projects" && (
+          <Section key="projects">
+            <h2 className="text-5xl font-semibold mb-12">Projects</h2>
+            <div className="space-y-8 max-w-5xl">
+              <Card><CardContent className="p-6">Bayesian Modeling · STAT 447</CardContent></Card>
+              <Card><CardContent className="p-6">Diabetes Prediction · LASSO</CardContent></Card>
+              <Card><CardContent className="p-6">Java Systems · SQL Databases</CardContent></Card>
+              <Card><CardContent className="p-6">Creative Writing · Poetry · Newsletters</CardContent></Card>
+            </div>
+          </Section>
+        )}
+
+        {/* ================= CONTACT ================= */}
+        {page === "contact" && (
+          <Section key="contact">
+            <h2 className="text-5xl font-semibold mb-6">Contact</h2>
+            <p className="max-w-lg text-neutral-400 mb-8">
+              {/* EDIT COPY HERE */}
+              Open to collaboration, conversation, and interesting problems.
+            </p>
+            <Button>Email Me</Button>
+          </Section>
+        )}
+
+      </AnimatePresence>
+
+      {/* FOOTER */}
+      <footer className="text-center text-neutral-500 py-10">
+        © {new Date().getFullYear()} · Designed & built intentionally
+      </footer>
     </div>
   );
 }
