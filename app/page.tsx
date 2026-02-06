@@ -190,27 +190,178 @@ export default function Portfolio() {
           )}
 
           {page === "technical" && (
-            <Section key="technical">
-              <h2 className="text-4xl font-bold mb-16 uppercase tracking-tighter">Experience</h2>
-              <div className="grid gap-12 max-w-4xl font-light text-sm">
-                <div className="border-l border-white/10 pl-8">
+            <Section key="technical" className="justify-start pb-20">
+              <div className="max-w-4xl w-full">
+                <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 mb-16">Professional Path</h2>
+                
+                <div className="space-y-24">
+                  {/* 1. Soneri Bank - Risk Management */}
+                  <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
+                    <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">June 2025 – Aug 2025</span>
-                    <h3 className="text-2xl font-bold mt-1 uppercase">Risk Management Intern</h3>
-                    <p className="text-white/60 mb-4 font-mono">Soneri Bank</p>
-                    <p className="text-neutral-400 leading-relaxed max-w-2xl">
-                        Validated and cleaned insurance credit risk model inputs (PD, LGD) in Excel, improving data accuracy by 15%.
-                        Proposed automation of modeling workflows using SQL-based data warehousing and Python pipelines.
-                    </p>
-                </div>
-                <div className="border-l border-white/10 pl-8">
+                    <h3 className="text-3xl font-bold mt-2 uppercase tracking-tighter text-white">Risk Management Intern</h3>
+                    <p className="text-white/60 mb-6 font-mono text-xs uppercase tracking-wider">Soneri Bank · Risk Management Division</p>
+                    <div className="text-neutral-400 leading-relaxed space-y-4 font-light text-base max-w-2xl">
+                        <p>Validated insurance credit risk model inputs (PD, LGD) in <span className="text-white">Excel</span>, improving data accuracy by 15% for regulatory compliance.</p>
+                        <p>Proposed automation of modeling workflows using <span className="text-white">SQL-based</span> data warehousing and Python pipelines.</p>
+                    </div>
+                    <div className="flex gap-2 mt-6">
+                      {["SQL", "Python", "Credit Risk", "VBA"].map(tag => (
+                        <span key={tag} className="text-[9px] font-mono px-3 py-1 bg-white/5 text-white/40 border border-white/5 rounded-full">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 2. UBC Actuarial Club - VP External */}
+                  <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
+                    <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2024 – May 2025</span>
-                    <h3 className="text-2xl font-bold mt-1 uppercase">Vice President, External</h3>
-                    <p className="text-white/60 mb-4 font-mono">UBC Actuarial Science Club</p>
-                    <p className="text-neutral-400 leading-relaxed max-w-2xl">
-                        Curated interactive social media campaigns resulting in 40K+ views.
-                        Secured industry partnerships and supervised recruitment from a pool of 43 applicants.
-                    </p>
+                    <h3 className="text-3xl font-bold mt-2 uppercase tracking-tighter text-white">Vice President, External</h3>
+                    <p className="text-white/60 mb-6 font-mono text-xs uppercase tracking-wider">UBC Actuarial Science Club</p>
+                    <div className="text-neutral-400 leading-relaxed space-y-4 font-light text-base max-w-2xl">
+                        <p>Curated interactive social media campaigns resulting in <span className="text-white">40K+ views</span> and supervised recruitment from a pool of 43 applicants.</p>
+                    </div>
+                    <div className="flex gap-2 mt-6">
+                      {["Leadership", "Partnerships", "Strategic Growth"].map(tag => (
+                        <span key={tag} className="text-[9px] font-mono px-3 py-1 bg-white/5 text-white/40 border border-white/5 rounded-full">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 3. Get Thrifty - Graphic Designer */}
+                  <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
+                    <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2025 – Present</span>
+                    <h3 className="text-3xl font-bold mt-2 uppercase tracking-tighter text-white">Graphic Designer</h3>
+                    <p className="text-white/60 mb-6 font-mono text-xs uppercase tracking-wider">Get Thrifty UBC · Vancouver, BC</p>
+                    <div className="text-neutral-400 leading-relaxed space-y-4 font-light text-base max-w-2xl">
+                        <p>Designed data-informed visuals by <span className="text-white">analyzing engagement metrics</span>, resulting in a measurable <span className="text-white">50% increase</span> in audience interaction.</p>
+                        <p>Optimized visual layouts using <span className="text-white">A/B testing principles</span> and UX-inspired design to enhance readability and user retention.</p>
+                    </div>
+                    <div className="flex gap-2 mt-6">
+                      {["UX Design", "Data Analysis", "A/B Testing", "Figma"].map(tag => (
+                        <span key={tag} className="text-[9px] font-mono px-3 py-1 bg-white/5 text-white/40 border border-white/5 rounded-full">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 4. Tim Hortons - Sales Attendant */}
+                  <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
+                    <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">Sept. 2022 – Dec. 2025</span>
+                    <h3 className="text-3xl font-bold mt-2 uppercase tracking-tighter text-white">Auxiliary Sales Attendant</h3>
+                    <p className="text-white/60 mb-6 font-mono text-xs uppercase tracking-wider">Tim Hortons · Vancouver, BC</p>
+                    <div className="text-neutral-400 leading-relaxed space-y-4 font-light text-base max-w-2xl">
+                        <p>Increased customer satisfaction survey scores by <span className="text-white">20%</span> through exceptional service and efficient deliverable prioritization.</p>
+                        <p>Managed multiple concurrent tasks under tight time constraints in a fast-paced retail environment.</p>
+                    </div>
+                    <div className="flex gap-2 mt-6">
+                      {["Efficiency", "Crisis Management", "Operations"].map(tag => (
+                        <span key={tag} className="text-[9px] font-mono px-3 py-1 bg-white/5 text-white/40 border border-white/5 rounded-full">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 5. Sharkkfit - Head of Marketing */}
+                  <div className="group relative border-l border-white/10 pl-8 transition-colors hover:border-white/40">
+                    <div className="absolute -left-[1px] top-0 h-8 w-[2px] bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">June 2021 – Dec 2021</span>
+                    <h3 className="text-3xl font-bold mt-2 uppercase tracking-tighter text-white">Head of Marketing</h3>
+                    <p className="text-white/60 mb-6 font-mono text-xs uppercase tracking-wider">Sharkkfit · Instagram Operations</p>
+                    <div className="text-neutral-400 leading-relaxed space-y-4 font-light text-base max-w-2xl">
+                        <p>Directed social media strategy and brand positioning, focusing on community growth and aesthetic consistency during early-stage brand development.</p>
+                    </div>
+                    <div className="flex gap-2 mt-6">
+                      {["Marketing Strategy", "Content Direction", "Branding"].map(tag => (
+                        <span key={tag} className="text-[9px] font-mono px-3 py-1 bg-white/5 text-white/40 border border-white/5 rounded-full">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </Section>
+          )}
+
+          {page === "projects" && (
+            <Section key="projects" className="justify-start pb-20">
+              <div className="max-w-6xl w-full space-y-32">
+                
+                {/* --- TECHNICAL PROJECTS --- */}
+                <div className="space-y-12">
+                  <div className="flex items-baseline gap-4">
+                    <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Technical</h2>
+                    <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Quantitative / Data</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] transition-all">
+                      <div className="flex justify-between items-start mb-6">
+                        <div className="p-3 bg-white/5 rounded-xl text-white">
+                          <code className="text-xs">.R / .py</code>
+                        </div>
+                        <span className="text-[10px] font-mono text-white/30">2024</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">Portfolio Risk Analysis Model</h3>
+                      <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
+                        Developed a simulation-based model to calculate Value at Risk (VaR) and Expected Shortfall for a diversified asset portfolio using Monte Carlo methods.
+                      </p>
+                      <div className="flex gap-2">
+                        {["Statistics", "Monte Carlo", "Financial Math"].map(t => (
+                          <span key={t} className="text-[9px] font-mono text-white/40 uppercase tracking-widest">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] transition-all">
+                      <div className="flex justify-between items-start mb-6">
+                        <div className="p-3 bg-white/5 rounded-xl text-white">
+                          <code className="text-xs">SQL / BI</code>
+                        </div>
+                        <span className="text-[10px] font-mono text-white/30">2023</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">Health Claims Dashboard</h3>
+                      <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
+                        Processed large-scale insurance datasets to visualize claim frequency and severity trends, identifying key cost drivers for actuarial review.
+                      </p>
+                      <div className="flex gap-2">
+                        {["Data Viz", "SQL", "Actuarial Science"].map(t => (
+                          <span key={t} className="text-[9px] font-mono text-white/40 uppercase tracking-widest">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* --- CREATIVE PROJECTS --- */}
+                <div className="space-y-12">
+                  <div className="flex items-baseline gap-4">
+                    <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Creative</h2>
+                    <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Design / Narrative</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="md:col-span-2 relative h-[300px] rounded-3xl overflow-hidden group border border-white/5">
+                      <div className="absolute inset-0 bg-neutral-900 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center text-white/10 text-6xl font-black italic">VISUALS</div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a12] via-transparent to-transparent opacity-80" />
+                      <div className="absolute bottom-8 left-8">
+                        <h3 className="text-xl font-bold text-white mb-1">Get Thrifty Social Campaign</h3>
+                        <p className="text-neutral-400 text-xs font-light tracking-widest uppercase">Digital Art Direction</p>
+                      </div>
+                    </div>
+
+                    <div className="relative h-[300px] rounded-3xl overflow-hidden group border border-white/5 bg-white/[0.02] p-8 flex flex-col justify-end">
+                      <div className="mb-auto">
+                        <span className="text-4xl opacity-20">"</span>
+                        <p className="text-neutral-300 italic font-light text-sm">
+                          Philosophy in the gaps—weaving poetry through statistical structures.
+                        </p>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mt-4">Selected Poetry</h3>
+                      <p className="text-neutral-400 text-[10px] uppercase tracking-widest mt-1">Literary Works</p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </Section>
           )}
