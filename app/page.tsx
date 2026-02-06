@@ -1,25 +1,10 @@
-// =====================================================
-// CREATIVE AGENCY–STYLE PORTFOLIO
-// Stack: Next.js-style React + Tailwind + Framer Motion
-// Purpose: Structure + motion + theming (YOU write the copy)
-// =====================================================
-
 "use client";
 
-import { useState } from "react";
+// 1. Added ReactNode to the imports for TypeScript support
+import React, { useState, ReactNode } from "react"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-/*
-====================
-HOW TO EDIT
-====================
-- TEXT: Replace content inside "EDIT COPY HERE"
-- COLORS: Change Tailwind colors (neutral-950, neutral-100, etc.)
-- FONTS: Add font in globals.css and swap className
-- SECTIONS: Each <Section /> can become its own page later
-*/
 
 const pageTransition = {
   initial: { opacity: 0, y: 40 },
@@ -27,7 +12,13 @@ const pageTransition = {
   exit: { opacity: 0, y: -40 },
 };
 
-function Section({ children }) {
+// 2. Added a type definition for the Section props
+interface SectionProps {
+  children: ReactNode;
+}
+
+// 3. Applied the type to the Section component
+function Section({ children }: SectionProps) {
   return (
     <motion.section
       variants={pageTransition}
@@ -50,27 +41,27 @@ export default function Portfolio() {
 
       {/* NAV */}
       <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 backdrop-blur bg-neutral-950/60">
-        <span className="font-semibold">EDIT NAME</span>
+        <span className="font-semibold uppercase tracking-widest">Shahbaz Ayaz</span>
         <div className="flex gap-6 text-sm">
-          <button onClick={() => setPage("technical")}>Technical</button>
-          <button onClick={() => setPage("design")}>Design</button>
-          <button onClick={() => setPage("projects")}>Projects</button>
-          <button onClick={() => setPage("contact")}>Contact</button>
+          <button onClick={() => setPage("home")} className={page === "home" ? "text-white" : "text-neutral-500"}>Home</button>
+          <button onClick={() => setPage("technical")} className={page === "technical" ? "text-white" : "text-neutral-500"}>Technical</button>
+          <button onClick={() => setPage("design")} className={page === "design" ? "text-white" : "text-neutral-500"}>Design</button>
+          <button onClick={() => setPage("projects")} className={page === "projects" ? "text-white" : "text-neutral-500"}>Projects</button>
+          <button onClick={() => setPage("contact")} className={page === "contact" ? "text-white" : "text-neutral-500"}>Contact</button>
         </div>
       </nav>
 
       <AnimatePresence mode="wait">
-
         {/* ================= HOME / LANDING ================= */}
         {page === "home" && (
           <Section key="home">
             <div className="flex flex-col justify-center items-center text-center">
               <motion.h1 className="text-7xl md:text-9xl font-bold tracking-tight">
-                EDIT NAME
+                SHAHBAZ
               </motion.h1>
               <p className="mt-8 max-w-xl text-neutral-400">
-                {/* EDIT COPY HERE */}
-                I build analytical systems with a creative point of view.
+                I build analytical systems with a creative point of view. 
+                Bridging the gap between data science and aesthetic design.
               </p>
               <div className="mt-12 flex gap-4">
                 <Button onClick={() => setPage("projects")}>View Work</Button>
@@ -122,13 +113,11 @@ export default function Portfolio() {
           <Section key="contact">
             <h2 className="text-5xl font-semibold mb-6">Contact</h2>
             <p className="max-w-lg text-neutral-400 mb-8">
-              {/* EDIT COPY HERE */}
               Open to collaboration, conversation, and interesting problems.
             </p>
             <Button>Email Me</Button>
           </Section>
         )}
-
       </AnimatePresence>
 
       {/* FOOTER */}
