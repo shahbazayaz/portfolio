@@ -281,51 +281,85 @@ export default function Portfolio() {
             <Section key="projects" className="justify-start pb-20">
               <div className="max-w-6xl w-full space-y-32">
                 
-                {/* --- TECHNICAL PROJECTS --- */}
-                <div className="space-y-12">
-                  <div className="flex items-baseline gap-4">
-                    <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Technical</h2>
-                    <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">Quantitative / Data</span>
-                  </div>
+               {/* --- TECHNICAL PROJECTS --- */}
+<div className="space-y-12">
+  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-8">
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex items-baseline gap-4" // This keeps them on the same line
+    >
+      <h2 className="text-4xl font-black uppercase tracking-tighter text-white">
+        Technical
+      </h2>
+      <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.3em]">
+        Quantitative
+      </span>
+    </motion.div>
+    </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] transition-all">
-                      <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-white/5 rounded-xl text-white">
-                          <code className="text-xs">.R / .py</code>
-                        </div>
-                        <span className="text-[10px] font-mono text-white/30">2024</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-tight">Portfolio Risk Analysis Model</h3>
-                      <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
-                        Developed a simulation-based model to calculate Value at Risk (VaR) and Expected Shortfall for a diversified asset portfolio using Monte Carlo methods.
-                      </p>
-                      <div className="flex gap-2">
-                        {["Statistics", "Monte Carlo", "Financial Math"].map(t => (
-                          <span key={t} className="text-[9px] font-mono text-white/40 uppercase tracking-widest">{t}</span>
-                        ))}
-                      </div>
-                    </div>
+  {/* INTERACTIVE STACK / LIST */}
+  <div className="flex flex-col space-y-4">
+    {[
+      { title: "Bayesian Volatility Modeling", stack: "R / Stan / Git", desc: "Modeled FAANG stocks using a Bayesian hierarchical AR(1)-GARCH(1,1) framework. Captured sector-level volatility persistence (β ≈ 0.899).", tags: ["Volatility Clustering", "HMC"], link: "https://github.com/shahbazayaz/stat447", type: "code" },
+      { title: "Fitness Relational Database", stack: "SQL / JavaScript/ Git", desc: "Built a normalized SQL database (3NF/BCNF) with a JS-based GUI. Implemented 10+ analytical queries for activity tracking.", tags: ["Normalization", "GUI"], link: "#", type: "db" },
+      { title: "Optimizing Diabetes Prediction", stack: "R / Lasso / Git", desc: "Feature-engineered models using Logistic Regression and LASSO. Achieved 77% accuracy verified through AUC-ROC analysis.", tags: ["Lasso", "AUC-ROC"], link: "https://github.com/shahbazayaz/STAT-301", type: "stats" },
+      { title: "Osmosis Factorial Design", stack: "ANOVA / Factorial", desc: "Experimental design testing for contrasts and interaction terms. Measured significance in treatment effects for Osmosis.", tags: ["ANOVA", "Design"], link: "/stat404_project.pdf", type: "pdf" },
+      { title: "Insurance Dataset Analysis", stack: "R / GLM", desc: "Engineered a Multiple Linear Regression model with interaction terms to predict medical charges.", tags: ["GLM", "Risk"], link: "/stat306_insurance.pdf", type: "pdf" },
+      { title: "Star Classification", stack: "R / ML", desc: "Applied machine learning classifiers to astronomical data to categorize stellar bodies based on spectral features.", tags: ["Data Science", "Scipy"], link: "https://github.com/shahbazayaz/dsci-100", type: "code" },
+      { title: "Rice Quality Inference", stack: "R / Inference", desc: "Conducted formal hypothesis testing to analyze agricultural data consistency using CLT principles and p-values.", tags: ["Hypothesis", "Inference"], link: "https://github.com/yun-sky/stat-201-project", type: "stats" }
+    ].map((project, i) => (
+      <motion.a
+        key={i}
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.05, duration: 0.4 }}
+        whileHover={{ x: 10, backgroundColor: "rgba(255, 255, 255, 0.03)" }}
+        // Reduced transition duration to 0.2s for high responsiveness
+        className="group relative grid grid-cols-1 md:grid-cols-12 items-center p-8 rounded-2xl border border-white/5 bg-white/[0.01] transition-all duration-200 ease-out overflow-hidden"
+      >
+        {/* Background Hover Glow Effect */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/[0.05] via-transparent to-transparent pointer-events-none" />
 
-                    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:bg-white/[0.04] transition-all">
-                      <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-white/5 rounded-xl text-white">
-                          <code className="text-xs">SQL / BI</code>
-                        </div>
-                        <span className="text-[10px] font-mono text-white/30">2023</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-tight">Health Claims Dashboard</h3>
-                      <p className="text-neutral-400 text-sm font-light leading-relaxed mb-6">
-                        Processed large-scale insurance datasets to visualize claim frequency and severity trends, identifying key cost drivers for actuarial review.
-                      </p>
-                      <div className="flex gap-2">
-                        {["Data Viz", "SQL", "Actuarial Science"].map(t => (
-                          <span key={t} className="text-[9px] font-mono text-white/40 uppercase tracking-widest">{t}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        {/* Status Dot only */}
+        <div className="hidden md:flex md:col-span-1 items-center">
+          <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-green-400 group-hover:shadow-[0_0_12px_rgba(74,222,128,0.8)] transition-all duration-200" />
+        </div>
+
+        {/* Project Info */}
+        <div className="md:col-span-4 relative z-10">
+          <span className="text-[9px] font-mono text-white/20 uppercase tracking-[0.2em] block mb-2 group-hover:text-white/50 transition-colors duration-200">{project.stack}</span>
+          <h3 className="text-xl font-bold text-white uppercase tracking-tighter transition-all duration-200">
+            {project.title}
+          </h3>
+        </div>
+
+        {/* Description & Tags */}
+        <div className="md:col-span-5 pr-8 relative z-10">
+          <p className="text-neutral-500 group-hover:text-neutral-300 text-sm font-light leading-relaxed transition-colors duration-200 line-clamp-2 mb-3">
+            {project.desc}
+          </p>
+          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+            {project.tags.map(tag => (
+              <span key={tag} className="text-[8px] font-mono py-0.5 px-2 border border-white/10 text-white/40 rounded-sm uppercase">{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Action Button Icon Only */}
+        <div className="md:col-span-2 flex justify-end relative z-10">
+           <div className="p-3 rounded-full border border-white/5 group-hover:border-white/20 group-hover:bg-white group-hover:text-black transition-all duration-200 shadow-xl">
+             <ExternalLink size={14} />
+           </div>
+        </div>
+      </motion.a>
+    ))}
+  </div>
+</div>
 
 {/* --- CREATIVE PROJECTS --- */}
                 <div className="space-y-12">
