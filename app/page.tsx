@@ -2,7 +2,7 @@
 
 import React, { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Linkedin, ExternalLink } from "lucide-react";
+import { Mail, Linkedin, ExternalLink } from "lucide-react";
 
 const fontImport = `
   @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Cedarville+Cursive&family=Inter:wght@300;400;900&family=JetBrains+Mono:wght@300&display=swap');
@@ -53,6 +53,7 @@ export default function Portfolio() {
             <button onClick={() => setPage("about")} className={page === "about" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>About</button>
             <button onClick={() => setPage("technical")} className={page === "technical" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>Experience</button>
             <button onClick={() => setPage("projects")} className={page === "projects" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>Projects</button>
+            <button onClick={() => setPage("contact")} className={page === "contact" ? "text-white underline underline-offset-8" : "text-neutral-500 hover:text-white"}>Contact Me</button>
             <a href="https://www.linkedin.com/in/muhammad-shahbaz-murtaza-64493022b/" target="_blank" className="text-neutral-500 hover:text-white"><Linkedin size={16} /></a>
           </div>
         </div>
@@ -464,6 +465,87 @@ export default function Portfolio() {
               </div>
             </Section>
           )}
+
+          {page === "contact" && (
+  <Section key="contact" className="items-start relative overflow-hidden">
+    {/* Background Depth - Cohesive with Home */}
+    <div className="absolute inset-0 pointer-events-none opacity-20">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[120px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100%_32px]" />
+    </div>
+
+    <div className="max-w-4xl w-full relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+      >
+        {/* Section Header */}
+        <div className="flex items-baseline gap-4 border-b border-white/5 pb-8 mb-12">
+          <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Contact Me!</h2>
+        
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
+          {/* Left Side: Info */}
+          <div className="md:col-span-5 space-y-8">
+            <div>
+              <p className="text-neutral-400 font-light leading-relaxed mb-6">
+                Currently open to <span className="text-white">Quantitative Analyst</span> roles, 
+                data analysis projects, or any actuarial opportunities. Reach out to me if interested!
+              </p>
+              <div className="space-y-2 font-mono text-[10px] uppercase tracking-widest">
+                <p className="text-white/20">Location</p>
+                <p className="text-white">Vancouver, BC</p>
+              </div>
+            </div>
+
+            <div className="pt-8 space-y-4">
+              <a href="mailto:your-email@example.com" className="group flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <Mail size={16} />
+                </div>
+                <span className="text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">Email Me</span>
+              </a>
+              <a href="https://linkedin.com/in/shahbazmurtaza" target="_blank" className="group flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                  <Linkedin size={16} />
+                </div>
+                <span className="text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Side: Form */}
+          <form className="md:col-span-7 space-y-6">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-[9px] font-mono uppercase tracking-[0.3em] text-white/30 ml-2">Name</label>
+                <input type="text" className="w-full bg-white/[0.02] border border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white/20 transition-colors" placeholder="John Doe" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[9px] font-mono uppercase tracking-[0.3em] text-white/30 ml-2">Email</label>
+                <input type="email" className="w-full bg-white/[0.02] border border-white/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white/20 transition-colors" placeholder="john@example.com" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-[9px] font-mono uppercase tracking-[0.3em] text-white/30 ml-2">Message</label>
+              <textarea rows={5} className="w-full bg-white/[0.02] border border-white/5 rounded-2xl px-4 py-4 text-sm focus:outline-none focus:border-white/20 transition-colors resize-none" placeholder="Let's build something..." />
+            </div>
+            
+            <motion.button
+              whileHover={{ scale: 1.02, backgroundColor: "#ffffff", color: "#000000" }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-4 rounded-xl border border-white/10 font-mono text-[10px] uppercase tracking-[0.4em] transition-all duration-300"
+            >
+              Send
+            </motion.button>
+          </form>
+        </div>
+      </motion.div>
+    </div>
+  </Section>
+)}
         </AnimatePresence>
       </main>
     </div>
